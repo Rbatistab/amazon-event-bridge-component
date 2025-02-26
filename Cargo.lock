@@ -564,6 +564,28 @@ dependencies = [
 ]
 
 [[package]]
+name = "event-bridge-component"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "cargo-llvm-cov",
+ "chrono",
+ "md5",
+ "num-bigint",
+ "num-traits",
+ "pretty_assertions",
+ "rand",
+ "serde",
+ "serde_json",
+ "serde_qs",
+ "url",
+ "urlencoding",
+ "uuid",
+ "wit-bindgen",
+ "wit-deps",
+]
+
+[[package]]
 name = "event-listener"
 version = "2.5.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -588,28 +610,6 @@ checksum = "3c3e4e0dd3673c1139bf041f3008816d9cf2946bbfac2945c09e523b8d7b05b2"
 dependencies = [
  "event-listener 5.4.0",
  "pin-project-lite",
-]
-
-[[package]]
-name = "example-rust-component"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "cargo-llvm-cov",
- "chrono",
- "md5",
- "num-bigint",
- "num-traits",
- "pretty_assertions",
- "rand",
- "serde",
- "serde_json",
- "serde_qs",
- "url",
- "urlencoding",
- "uuid",
- "wit-bindgen",
- "wit-deps",
 ]
 
 [[package]]

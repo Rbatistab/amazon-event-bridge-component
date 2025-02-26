@@ -1,20 +1,51 @@
 manifest-version = 1
 
 [component]
-name = "example-rust-component"
-version = "1.0.0"
+name = "amazon-event-bridge-component"
+version = "0.1.0"
 
 category = "data-collection"
-subcategory = "analytics"
-description = "Example Rust component for data collection"
-documentation = "https://github.com/edgee-cloud/example-rust-component"
-repository = "https://github.com/edgee-cloud/example-rust-component"
+subcategory = "attribution"
+description = '''
+This component enables seamless integration between [Edgee](https://www.edgee.cloud) and [Amazon EventBridge](https://aws.amazon.com/eventbridge/),
+allowing you to send events for attribution for a given user.
+'''
+documentation = "https://github.com/Rbatistab/amazon-event-bridge-component"
+repository = "https://github.com/Rbatistab/amazon-event-bridge-component"
 wit-world-version = "0.4.0"
 
 [component.build]
-command = "cargo build --target wasm32-wasip2 --release --target-dir ./target && mv ./target/wasm32-wasip2/release/example_rust_component.wasm ./dc_component.wasm"
-output_path = "dc_component.wasm"
+command = "cargo build --target wasm32-wasip2 --release && cp ./target/wasm32-wasip2/release/event_bridge_component.wasm event_bridge.wasm"
+output_path = "event_bridge.wasm"
 
-[component.settings.example]
-title = "Example Config Field"
+# General settings
+[component.settings.aws_region]
+title = "Your AWS region"
+type = "string"
+
+[component.settings.aws_event_bus]
+title = "Your AWS event bus"
+type = "string"
+
+# Access settings
+# - https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-encryption-key-policy.html
+# - https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-infrastructure.html
+[component.settings.aws_access_key]
+title = "Your AWS access key (optional)"
+type = "string"
+
+[component.settings.aws_security_token]
+title = "Your AWS Security Token (optional)"
+type = "string"
+
+[component.settings.aws_iam_role]
+title = "Your AWS IAM Role (optional)"
+type = "string"
+
+[componet.settings.aws_acess_policy]
+title = "Your AWS Access Policy (optional)"
+type = "string"
+
+[component.settings.aws_vpc_endpoint]
+title = "Your AWS VPC endpoint (optional)"
 type = "string"
