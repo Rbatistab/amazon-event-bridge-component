@@ -10,8 +10,12 @@ help:
 		| awk 'BEGIN { FS = ":.*?## " }; { printf "\033[36m%-30s\033[0m %s\n", $$1, $$2 }'
 
 build: ## Build the wasi component
-	cargo clean
+	clean
 	edgee components build
+
+clean:
+	rm *.wasm
+	cargo clean
 
 test: ## Test the component on host platform
 	cargo test --lib
