@@ -1,5 +1,5 @@
-use crate::exports::edgee::protocols::data_collection::{Dict, EdgeeRequest, Event, HttpMethod};
-use exports::edgee::protocols::data_collection::Guest;
+use crate::exports::edgee::components::data_collection::{Dict, EdgeeRequest, Event, HttpMethod};
+use exports::edgee::components::data_collection::Guest;
 use std::collections::HashMap;
 
 wit_bindgen::generate!({world: "data-collection", path: "wit", generate_all});
