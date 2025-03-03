@@ -19,12 +19,17 @@ command = "cargo build --target wasm32-wasip2 --release && cp ./target/wasm32-wa
 output_path = "event_bridge.wasm"
 
 # General settings
+# https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html
 [component.settings.aws_region]
 title = "Your AWS region"
 type = "string"
 
-[component.settings.aws_event_bus]
-title = "Your AWS event bus"
+[component.settings.aws_endpoint_id]
+title = "Your AWS endpoint id"
+type = "string"
+
+[component.settings.aws_entries]
+title = "Your AWS entries that define event"
 type = "string"
 
 # Access settings
