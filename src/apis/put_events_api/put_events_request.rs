@@ -47,7 +47,7 @@ type Entries = Vec<PutEventsRequestEntry>;
 /// - vpc_endpoint: (Optional?) TBD
 pub struct PutEventsRequest {
     endpoint_id: String,
-    entries: Entries
+    entries: Entries,
     access_key: Option<String>,
     security_token: Option<String>,
     iam_role: Option<String>,
