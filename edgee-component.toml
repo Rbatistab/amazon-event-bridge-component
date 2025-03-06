@@ -5,14 +5,15 @@ name = "amazon-event-bridge-component"
 version = "0.1.0"
 
 category = "data-collection"
-subcategory = "attribution"
+subcategory = "warehouse"
 description = '''
-This component enables seamless integration between [Edgee](https://www.edgee.cloud) and [Amazon EventBridge](https://aws.amazon.com/eventbridge/),
+This component enables seamless integration between [Edgee](https://www.edgee.cloud)
+and [Amazon EventBridge](https://aws.amazon.com/eventbridge/),
 allowing you to send events for attribution for a given user.
 '''
 documentation = "https://github.com/Rbatistab/amazon-event-bridge-component"
 repository = "https://github.com/Rbatistab/amazon-event-bridge-component"
-wit-world-version = "0.4.0"
+wit-world-version = "0.5.0"
 
 [component.build]
 command = "cargo build --target wasm32-wasip2 --release && cp ./target/wasm32-wasip2/release/event_bridge_component.wasm event_bridge.wasm"
@@ -47,7 +48,7 @@ type = "string"
 title = "Your AWS IAM Role (optional)"
 type = "string"
 
-[componet.settings.aws_acess_policy]
+[componet.settings.aws_access_policy]
 title = "Your AWS Access Policy (optional)"
 type = "string"
 
