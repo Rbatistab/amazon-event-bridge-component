@@ -1,11 +1,12 @@
 manifest-version = 1
 
 [component]
-name = "amazon-event-bridge-component"
+name = "Amazon EventBridge"
 version = "0.1.0"
 
 category = "data-collection"
 subcategory = "warehouse"
+icon-path = "eventbridge.png"
 description = '''
 This component enables seamless integration between [Edgee](https://www.edgee.cloud)
 and [Amazon EventBridge](https://aws.amazon.com/eventbridge/),
