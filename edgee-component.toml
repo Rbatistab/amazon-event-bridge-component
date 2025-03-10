@@ -21,38 +21,33 @@ command = "cargo build --target wasm32-wasip2 --release && cp ./target/wasm32-wa
 output_path = "event_bridge.wasm"
 
 # General settings
-# https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html
+
+[component.settings.api_variant]
+title = "Your EventBridge API variant"
+type = "string"
+required = true
+options = ["PutEvent"] # Currently only supports PutEvent API
+
 [component.settings.aws_region]
 title = "Your AWS region"
 type = "string"
+required = true
 
-[component.settings.aws_endpoint_id]
-title = "Your AWS endpoint id"
-type = "string"
-
-[component.settings.aws_entries]
-title = "Your AWS entries that define event"
+[component.settings.domain]
+title = "Your AWS domain for EventBridge (optional)"
 type = "string"
 
 # Access settings
-# - https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-encryption-key-policy.html
-# - https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-infrastructure.html
 [component.settings.aws_access_key]
-title = "Your AWS access key (optional)"
+title = "Your AWS access key"
 type = "string"
+required = true
+
+[component.settings.aws_secret_key]
+title = "Your AWS Secret Access Key"
+type = "string"
+required = true
 
 [component.settings.aws_security_token]
 title = "Your AWS Security Token (optional)"
-type = "string"
-
-[component.settings.aws_iam_role]
-title = "Your AWS IAM Role (optional)"
-type = "string"
-
-[componet.settings.aws_access_policy]
-title = "Your AWS Access Policy (optional)"
-type = "string"
-
-[component.settings.aws_vpc_endpoint]
-title = "Your AWS VPC endpoint (optional)"
 type = "string"

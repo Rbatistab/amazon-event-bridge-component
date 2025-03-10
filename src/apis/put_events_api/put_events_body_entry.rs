@@ -65,7 +65,6 @@ impl FromStr for PutEventsRequestEntry {
 mod put_events_request_entry_test {
     use super::*;
     use chrono::Utc;
-    use crate::apis::put_events_api::put_events_request_entry::PutEventsRequestEntry;
 
     #[test]
     fn test_from_str() {
