@@ -3,15 +3,15 @@
 //! This module handles the construction and management of headers required
 //! for making PutEvents API requests to Amazon EventBridge.
 
+use crate::apis::utils::settings::Settings;
+use crate::exports::edgee::components::data_collection::Dict;
 use aws_credential_types::Credentials;
 use aws_sigv4::http_request::{
     sign, SignableBody, SignableRequest, SigningParams, SigningSettings,
 };
+use aws_sigv4::sign::v4;
 use aws_smithy_runtime_api::client::identity::Identity;
 use std::time::SystemTime;
-use aws_sigv4::sign::v4;
-use crate::apis::utils::settings::Settings;
-use crate::exports::edgee::components::data_collection::Dict;
 
 /// Represents the headers configuration for EventBridge PutEvents API requests
 ///
@@ -27,7 +27,7 @@ pub struct PutEventsHeaders {
     /// AWS secret key for request authentication
     secret_key: String,
     /// Optional AWS security token for temporary credentials
-    security_token: Option<String>
+    security_token: Option<String>,
 }
 
 impl PutEventsHeaders {
@@ -41,13 +41,13 @@ impl PutEventsHeaders {
     ///
     /// * `PutEventsHeaders` - A new instance configured with the provided settings
     pub fn new(settings_map: &Settings) -> PutEventsHeaders {
-      Self {
-          domain: settings_map.domain.clone(),
-          region: settings_map.region.clone(),
-          access_key: settings_map.access_key.clone(),
-          secret_key: settings_map.secret_key.clone(),
-          security_token: settings_map.security_token.clone()
-      }
+        Self {
+            domain: settings_map.domain.clone(),
+            region: settings_map.region.clone(),
+            access_key: settings_map.access_key.clone(),
+            secret_key: settings_map.secret_key.clone(),
+            security_token: settings_map.security_token.clone(),
+        }
     }
 
     /// Constructs the complete EventBridge endpoint URL
@@ -93,17 +93,15 @@ impl PutEventsHeaders {
     /// This method uses AWS Signature Version 4 signing process to generate
     /// authentication headers. The signing process includes the request body
     /// to ensure request integrity.
-    pub fn get_headers(
-        &self,
-        body: &String
-    ) -> Dict {
+    pub fn get_headers(&self, body: &String) -> Dict {
         let identity: Identity = Credentials::new(
             self.access_key.clone(),
             self.secret_key.clone(),
             self.security_token.clone(),
             None,
-            "hardcoded-credentials"
-        ).into();
+            "hardcoded-credentials",
+        )
+        .into();
 
         let signing_settings = SigningSettings::default();
 
@@ -121,8 +119,9 @@ impl PutEventsHeaders {
             "POST",
             self.get_headers_host(),
             std::iter::empty(),
-            SignableBody::Bytes(body.as_bytes())
-        ).expect("Signable request");
+            SignableBody::Bytes(body.as_bytes()),
+        )
+        .expect("Signable request");
 
         // generate the signature headers
         let (signing_instructions, _signature) = sign(signable_request, &signing_params)
@@ -134,7 +133,6 @@ impl PutEventsHeaders {
             .headers()
             .map(|(key, value)| (key.to_string(), value.to_string()))
             .collect()
-
     }
 }
 
@@ -147,5 +145,4 @@ mod put_events_request_test {
         // Dummy test
         assert_eq!(true, true)
     }
-
 }

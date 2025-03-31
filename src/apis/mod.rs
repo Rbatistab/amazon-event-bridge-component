@@ -18,7 +18,7 @@ type EdgeeRequester = Box<dyn ApiRequest>;
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub enum ApiVariant {
     /// PutEvents API operation variant
-    PutEvents(PutEventsApi)
+    PutEvents(PutEventsApi),
 }
 
 /// Builder pattern implementation for creating API requests
@@ -41,7 +41,7 @@ impl ApiRequestBuilder {
         ApiRequestBuilder {
             api_variant: None,
             settings_map: None,
-            event: None
+            event: None,
         }
     }
 
@@ -113,8 +113,7 @@ impl ApiRequestBuilder {
     /// Will panic if the api_variant is not set (None)
     fn get_api_from_api_variant(&self) -> EdgeeRequester {
         match self.api_variant.unwrap() {
-            ApiVariant::PutEvents(PutEventsApi) => Box::new(PutEventsApi)
+            ApiVariant::PutEvents(PutEventsApi) => Box::new(PutEventsApi),
         }
     }
-
 }

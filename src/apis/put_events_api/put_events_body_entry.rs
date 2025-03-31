@@ -1,13 +1,12 @@
-use std::str::FromStr;
 /// Represents an entry in a PutEvents request for Amazon EventBridge.
 ///
 /// This struct encapsulates all the necessary fields required to publish an event
 /// to Amazon EventBridge. It implements serialization and deserialization via serde,
 /// and provides a conversion from String to support parsing JSON representations.
-
 use chrono::offset::Utc;
 use chrono::DateTime;
 use serde::{Deserialize, Serialize};
+use std::str::FromStr;
 
 /// Represents an entry in a PutEvents request for Amazon EventBridge.
 ///
@@ -56,9 +55,9 @@ impl FromStr for PutEventsRequestEntry {
     /// # Panics
     /// Panics if the string cannot be parsed as valid JSON or doesn't match the expected structure.
     /// In production code, consider using a method that returns a Result instead of unwrapping.
-   fn from_str(_s: &str) -> Result<Self, Self::Err> {
-       serde_json::from_str(_s)
-   }
+    fn from_str(_s: &str) -> Result<Self, Self::Err> {
+        serde_json::from_str(_s)
+    }
 }
 
 #[cfg(test)]
@@ -76,7 +75,7 @@ mod put_events_request_entry_test {
             source: "com.mycompany.myapp".to_string(),
             resources: Some(vec!["resource1".to_string(), "resource2".to_string()]),
             time: None,
-            trace_header: None
+            trace_header: None,
         };
 
         let entry_from_str = PutEventsRequestEntry::from_str(entry_str);

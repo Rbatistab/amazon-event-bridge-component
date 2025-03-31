@@ -21,10 +21,9 @@
 //! ```
 
 use crate::apis::put_events_api::put_events_body_entry::PutEventsRequestEntry;
-use crate::exports::edgee::components::data_collection::{Event};
+use crate::exports::edgee::components::data_collection::Event;
 
 type Entries = Vec<PutEventsRequestEntry>;
-
 
 /// Represents a request to the PutEvents API for Amazon EventBridge.
 ///
@@ -66,7 +65,7 @@ impl PutEventsBody {
         // of the event
         Ok(Self {
             endpoint_id: String::new(),
-            entries: Entries::new()
+            entries: Entries::new(),
         })
     }
 
@@ -84,5 +83,4 @@ mod put_events_request_test {
         // Dummy test
         assert_eq!(true, true)
     }
-
 }

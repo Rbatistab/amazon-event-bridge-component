@@ -1,8 +1,8 @@
-use std::collections::HashMap;
-use anyhow::Context;
-use crate::apis::ApiVariant;
 use crate::apis::put_events_api::PutEventsApi;
+use crate::apis::ApiVariant;
 use crate::exports::edgee::components::data_collection::Dict;
+use anyhow::Context;
+use std::collections::HashMap;
 
 /// A map of configuration settings with string keys and values
 type StringConfigMap = HashMap<String, String>;
@@ -64,10 +64,11 @@ impl Settings {
             .map(|(key, value)| (key.to_string(), value.to_string()))
             .collect();
 
-        let api_variant = Self::get_api_variant_from_string(request_map
-            .get("api_variant")
-            .context("Missing api variant")?
-            .to_string()
+        let api_variant = Self::get_api_variant_from_string(
+            request_map
+                .get("api_variant")
+                .context("Missing api variant")?
+                .to_string(),
         );
 
         let region = request_map
@@ -75,7 +76,8 @@ impl Settings {
             .context("Missing AWS region")?
             .to_string();
 
-        let domain = request_map.get("domain")
+        let domain = request_map
+            .get("domain")
             .map(|s| s.to_string())
             .unwrap_or_else(|| "amazonaws.com".to_string());
 

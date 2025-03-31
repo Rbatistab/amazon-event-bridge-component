@@ -10,9 +10,9 @@ use crate::apis::utils::api_request::ApiRequest;
 use crate::apis::utils::settings::Settings;
 use crate::exports::edgee::components::data_collection::{EdgeeRequest, Event, HttpMethod};
 
-pub mod put_events_headers;
 pub mod put_events_body;
 mod put_events_body_entry;
+pub mod put_events_headers;
 
 /// Represents the PutEvents API request handler
 ///
@@ -32,12 +32,7 @@ impl ApiRequest for PutEventsApi {
     /// # Returns
     ///
     /// * `EdgeeRequest` - A fully configured request ready to be sent to EventBridge
-    fn get_edgee_request(
-        &self,
-        settings_map: &Settings,
-        event: &Event
-    ) -> EdgeeRequest {
-
+    fn get_edgee_request(&self, settings_map: &Settings, event: &Event) -> EdgeeRequest {
         let put_events_headers = PutEventsHeaders::new(settings_map);
 
         let method = HttpMethod::Post;
@@ -50,7 +45,7 @@ impl ApiRequest for PutEventsApi {
             url,
             headers,
             body,
-            forward_client_headers: false // Hardcoding this one for now
+            forward_client_headers: false, // Hardcoding this one for now
         }
     }
 }

@@ -1,6 +1,6 @@
+use crate::apis::ApiRequestBuilder;
 use crate::exports::edgee::components::data_collection::{Dict, EdgeeRequest, Event};
 use exports::edgee::components::data_collection::Guest;
-use crate::apis::ApiRequestBuilder;
 
 mod apis;
 
@@ -26,11 +26,9 @@ impl Guest for Component {
     fn user(edgee_event: Event, settings_dict: Dict) -> Result<EdgeeRequest, String> {
         send_to_event_bridge(edgee_event, settings_dict)
     }
-
 }
 
 fn send_to_event_bridge(edgee_event: Event, settings_dict: Dict) -> Result<EdgeeRequest, String> {
-
     let edgee_api_request = ApiRequestBuilder::new()
         .settings(&settings_dict)
         .event(&edgee_event)
@@ -38,7 +36,6 @@ fn send_to_event_bridge(edgee_event: Event, settings_dict: Dict) -> Result<Edgee
 
     Ok(edgee_api_request)
 }
-
 
 #[cfg(test)]
 mod tests {

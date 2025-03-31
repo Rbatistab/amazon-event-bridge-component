@@ -4,6 +4,7 @@ manifest-version = 1
 name = "Amazon EventBridge"
 version = "0.1.0"
 
+wit-version = "1.0.0"
 category = "data-collection"
 subcategory = "warehouse"
 icon-path = "eventbridge-icon.png"
@@ -14,7 +15,6 @@ allowing you to send events for attribution for a given user.
 '''
 documentation = "https://github.com/Rbatistab/amazon-event-bridge-component"
 repository = "https://github.com/Rbatistab/amazon-event-bridge-component"
-wit-world-version = "0.5.0"
 
 [component.build]
 command = "cargo build --target wasm32-wasip2 --release && cp ./target/wasm32-wasip2/release/event_bridge_component.wasm event_bridge.wasm"
