@@ -5,27 +5,24 @@
 //! Amazon EventBridge:
 //! ```
 //! {
-//!     "EndpointId": "string",
+//!     "EndpointId": "https://abcde.veo.endpoints.event.amazonaws.com",
 //!     "Entries": [
 //!         {
-//!             "Detail": "string",
-//!             "DetailType": "string",
-//!             "EventBusName": "string",
+//!             "Detail": "{ \"key1\": \"value1\", \"key2\": \"value2\" }",
+//!             "DetailType": "myDetailType",
+//!             "EventBusName": "myEventBusName",
 //!             "Resources": [ "string" ],
-//!             "Source": "string",
+//!             "Source": "com.mycompany.myapp",
 //!             "Time": number,
-//!             "TraceHeader": "string"
+//!             "TraceHeader": "myTraceHeader"
 //!         }
 //!     ]
 //! }
 //! ```
 
-use std::collections::HashMap;
 use crate::apis::put_events_api::put_events_body_entry::PutEventsRequestEntry;
-use crate::exports::edgee::components::data_collection::{Dict, Event};
+use crate::exports::edgee::components::data_collection::{Event};
 
-/// A map of configuration settings with string keys and values
-type StringConfigMap = HashMap<String, String>;
 type Entries = Vec<PutEventsRequestEntry>;
 
 
@@ -38,13 +35,33 @@ type Entries = Vec<PutEventsRequestEntry>;
 /// # Fields
 /// - endpoint_id: The URL subdomain of the endpoint
 /// - entries: Entries that defines an event in your system.
+///
+/// # Note
+/// Dummy values for now, since we don't know if we would need a body representation as part
+/// of the event
+#[allow(dead_code)]
 pub struct PutEventsBody {
     endpoint_id: String,
     entries: Entries,
 }
 
 impl PutEventsBody {
-    pub fn new(request_dict: Dict) -> anyhow::Result<Self> {
+    /// Creates a new instance of PutEventsBody with default values
+    ///
+    /// This method initializes a PutEventsBody with empty values for testing
+    /// and development purposes. The endpoint_id is set to an empty string
+    /// and entries are initialized as empty.
+    ///
+    /// # Returns
+    ///
+    /// * `Result<PutEventsBody, anyhow::Error>` - A new PutEventsBody instance wrapped in Result
+    ///
+    /// # Note
+    ///
+    /// Currently uses dummy values as the body representation requirements
+    /// for the event are not yet finalized.
+    #[allow(dead_code)]
+    pub fn new() -> anyhow::Result<Self> {
         // Dummy values for now, since we don't know if we would need a body representation as part
         // of the event
         Ok(Self {

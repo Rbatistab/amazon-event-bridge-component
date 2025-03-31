@@ -1,2 +1,2 @@
-pub mod api_provider;
+pub mod api_request;
 pub mod settings;
