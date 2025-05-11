@@ -21,13 +21,6 @@ command = "cargo build --target wasm32-wasip2 --release && cp ./target/wasm32-wa
 output_path = "event_bridge.wasm"
 
 # General settings
-
-[component.settings.api_variant]
-title = "Your EventBridge API variant"
-type = "string"
-required = true
-options = ["PutEvent"] # Currently only supports PutEvent API
-
 [component.settings.aws_region]
 title = "Your AWS region"
 type = "string"

@@ -3,8 +3,8 @@
 //! This module handles the construction and management of headers required
 //! for making PutEvents API requests to Amazon EventBridge.
 
-use crate::apis::utils::settings::Settings;
 use crate::exports::edgee::components::data_collection::Dict;
+use crate::put_events_api::settings::Settings;
 use aws_credential_types::Credentials;
 use aws_sigv4::http_request::{
     sign, SignableBody, SignableRequest, SigningParams, SigningSettings,

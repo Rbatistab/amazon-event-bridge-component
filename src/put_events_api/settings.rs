@@ -1,5 +1,4 @@
-use crate::apis::put_events_api::PutEventsApi;
-use crate::apis::ApiVariant;
+use crate::put_events_api::PutEventsApi;
 use crate::exports::edgee::components::data_collection::Dict;
 use anyhow::Context;
 use std::collections::HashMap;
@@ -22,8 +21,6 @@ type StringConfigMap = HashMap<String, String>;
 /// - `security_token`: (Optional) Session security token
 #[derive(Debug)]
 pub struct Settings {
-    /// The API variant/operation to be performed (e.g., PutEvent)
-    pub api_variant: ApiVariant,
     /// The AWS service domain (defaults to "amazonaws.com")
     pub domain: String,
     /// AWS region where the EventBridge service will be accessed
@@ -64,13 +61,6 @@ impl Settings {
             .map(|(key, value)| (key.to_string(), value.to_string()))
             .collect();
 
-        let api_variant = Self::get_api_variant_from_string(
-            request_map
-                .get("api_variant")
-                .context("Missing api variant")?
-                .to_string(),
-        );
-
         let region = request_map
             .get("aws_region")
             .context("Missing AWS region")?
@@ -94,35 +84,12 @@ impl Settings {
         let security_token = request_map.get("aws_security_token").cloned();
 
         Ok(Self {
-            api_variant,
             domain,
             region,
             access_key,
             secret_key,
             security_token,
         })
-    }
-
-    /// Converts a string representation of an API variant to the ApiVariant enum.
-    ///
-    /// # Arguments
-    ///
-    /// * `api_variant_string` - String representing the API variant
-    ///
-    /// # Returns
-    ///
-    /// * `ApiVariant` - The corresponding ApiVariant enum value
-    ///
-    /// # Panics
-    ///
-    /// This function will panic if the api_variant_string is not "PutEvent"
-    fn get_api_variant_from_string(api_variant_string: String) -> ApiVariant {
-        if api_variant_string == "PutEvent" {
-            ApiVariant::PutEvents(PutEventsApi)
-        } else {
-            // We don't want to handle a wrong api, let's log an error
-            panic!("Unknown API: {}", api_variant_string)
-        }
     }
 }
 
