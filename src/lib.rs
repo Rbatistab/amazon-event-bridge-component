@@ -1,6 +1,6 @@
 use crate::exports::edgee::components::data_collection::{Dict, EdgeeRequest, Event};
-use exports::edgee::components::data_collection::Guest;
 use crate::put_events_api::PutEventsRequestBuilder;
+use exports::edgee::components::data_collection::Guest;
 
 pub mod put_events_api;
 

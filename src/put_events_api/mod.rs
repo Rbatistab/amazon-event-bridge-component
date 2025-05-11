@@ -3,19 +3,13 @@
 //! This module provides the implementation for making PutEvents API requests
 //! to Amazon EventBridge. It handles request construction including headers,
 //! body formatting, and proper AWS authentication.
-//! 
-//! Event Bridge API request handling module
-//!
-//! This module provides structures and implementations for building and handling
-//! Amazon EventBridge API requests.
 
-mod settings;
 mod put_events_headers;
+mod settings;
 
-use crate::put_events_api::settings::Settings;
-use crate::put_events_api::put_events_headers::PutEventsHeaders;
 use crate::exports::edgee::components::data_collection::{Dict, EdgeeRequest, Event, HttpMethod};
-
+use crate::put_events_api::put_events_headers::PutEventsHeaders;
+use crate::put_events_api::settings::Settings;
 
 /// Represents the PutEvents API request handler
 ///

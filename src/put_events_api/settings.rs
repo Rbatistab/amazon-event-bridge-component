@@ -1,4 +1,3 @@
-use crate::put_events_api::PutEventsApi;
 use crate::exports::edgee::components::data_collection::Dict;
 use anyhow::Context;
 use std::collections::HashMap;

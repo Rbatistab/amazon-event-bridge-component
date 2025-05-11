@@ -12,6 +12,7 @@ use aws_sigv4::http_request::{
 use aws_sigv4::sign::v4;
 use aws_smithy_runtime_api::client::identity::Identity;
 use std::time::SystemTime;
+use crate::put_events_api::PutEventsRequestBuilder;
 
 /// Represents the headers configuration for EventBridge PutEvents API requests
 ///
@@ -80,13 +81,12 @@ impl PutEventsHeaders {
     ///
     /// # Returns
     ///
-    /// * `Dict` - A dictionary containing all required headers for the API request,
-    ///           including:
-    ///           - Authorization header with AWS signature
-    ///           - X-Amz-Date header with timestamp
-    ///           - Host header
-    ///           - Content-Type header
-    ///           - Security token header (if temporary credentials are used)
+    /// * `Dict` - A dictionary containing all required headers for the API request, including:
+    ///     - Authorization header with AWS signature
+    ///     - X-Amz-Date header with timestamp
+    ///     - Host header
+    ///     - Content-Type header
+    ///     - Security token header (if temporary credentials are used)
     ///
     /// # Note
     ///
@@ -133,6 +133,28 @@ impl PutEventsHeaders {
             .headers()
             .map(|(key, value)| (key.to_string(), value.to_string()))
             .collect()
+    }
+}
+
+impl Default for PutEventsRequestBuilder {
+    /// Creates a new `PutEventsRequestBuilder` with default settings.
+    ///
+    /// This implementation calls [`PutEventsRequestBuilder::new()`] to create
+    /// a new instance with default configuration.
+    ///
+    /// # Returns
+    ///
+    /// Returns a new instance of `PutEventsRequestBuilder` with default settings.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use amazon_event_bridge_component::put_events_api::PutEventsRequestBuilder;
+    ///
+    /// let builder = PutEventsRequestBuilder::default();
+    /// ```
+    fn default() -> Self {
+        Self::new()
     }
 }
 
